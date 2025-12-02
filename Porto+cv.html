@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PT — Portofolio & CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1420;
+      --card: #151b2c;
+      --text: #e8ecf1;
+      --muted: #aab3c4;
+      --accent: #7dd3fc;
+      --accent-strong: #38bdf8;
+      --border: #243043;
+    }
+    .light {
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --text: #1a202c;
+      --muted: #4a5568;
+      --accent: #0ea5e9;
+      --accent-strong: #0284c7;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box }
+    html, body { margin:0; padding:0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 500px at 80% -10%, rgba(125,211,252,.15), transparent) , var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent-strong); text-decoration: none }
+    a:hover { text-decoration: underline }
+    .container { max-width: 1024px; margin: 0 auto; padding: 24px }
+    header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      position: sticky; top:0; backdrop-filter: saturate(180%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      z-index: 50;
+    }
+    nav ul { display:flex; gap:16px; list-style:none; margin:0; padding:0 }
+    nav a { padding:8px 12px; border-radius:8px; color: var(--text) }
+    nav a:hover { background: var(--card) }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border:1px solid var(--border); border-radius:10px;
+      background: var(--card); color: var(--text); cursor:pointer;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .hero {
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:28px;
+      padding: 40px 0 24px;
+    }
+    .hero h1 { font-size: 2.2rem; margin:0 0 10px }
+    .typing { color: var(--accent-strong); border-right: 2px solid var(--accent-strong); padding-right:4px }
+    .tagline { color: var(--muted); margin: 8px 0 16px }
+    .hero-card {
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 80%, transparent), var(--card));
+      border: 1px solid var(--border); border-radius: 16px; padding: 18px;
+    }
+    .grid {
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;
+    }
+    .card {
+      background: var(--card); border:1px solid var(--border); border-radius:14px; padding:16px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.2) }
+    .card h3 { margin:6px 0 6px; font-size:1.05rem }
+    .badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
+    .badge {
+      font-size:.85rem; padding:6px 10px; border:1px solid var(--border);
+      border-radius:999px; background: color-mix(in oklab, var(--card) 85%, transparent);
+      color: var(--muted);
+    }
+    section { padding: 28px 0; border-top: 1px solid var(--border) }
+    section h2 { margin:0 0 14px; font-size: 1.4rem }
+    .list { display:grid; gap:10px }
+    .list-item {
+      display:flex; justify-content:space-between; align-items:flex-start; padding:12px;
+      background: var(--card); border:1px solid var(--border); border-radius:12px;
+    }
+    .left { max-width: 70% }
+    .right { text-align:right; color: var(--muted) }
+    .skills-cloud { display:flex; flex-wrap:wrap; gap:10px }
+    .skills-cloud .badge { background: color-mix(in oklab, var(--accent) 15%, var(--card)); color: var(--text); border-color: color-mix(in oklab, var(--accent) 30%, var(--border)) }
+    footer {
+      padding: 18px 0; color: var(--muted);
+    }
+    .socials { display:flex; gap:10px; flex-wrap:wrap }
+    .socials a { border:1px solid var(--border); background: var(--card); border-radius:10px; padding:8px 12px }
+    .resume-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px }
+    .avatar {
+      width: 120px; height:120px; border-radius:999px; border:2px solid var(--border);
+      background: linear-gradient(135deg, var(--accent), transparent);
+      display:flex; align-items:center; justify-content:center; font-weight:700; color:#062b3a;
+      margin: 10px auto 0;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr }
+      .grid { grid-template-columns: 1fr 1fr }
+      .left { max-width: 100% }
+    }
+    @media (max-width: 560px) {
+      .grid { grid-template-columns: 1fr }
+    }
+  </style>
+</head>
+<body class="light">
+  <div class="container">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#portfolio">Portofolio</a></li>
+          <li><a href="#cv">Curriculum Vitae</a></li>
+          <li><a href="#skills">Keahlian</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+      <button id="themeBtn" class="btn" aria-label="Toggle theme">🌗 Tema</button>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Halo, saya Rohmat Roziqin</h1>
+          <div class="typing" id="typing"></div>
+          <p class="tagline">IT Support dari Jawa Tengah, fokus pada perangkat keras dan jaringan komputer. Memiliki kemampuan installasi, maintenance dan troubleshooting. mengelola telpon pabx, hoting dan domain.</p>
+          <div class="resume-actions">
+            <a class="btn" href="#cv">📄 Lihat CV</a>
+            <a class="btn" href="#portfolio">🚀 Lihat Proyek</a>
+            <a class="btn" href="mailto:email@example.com">✉️ Hubungi</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="avatar">Rohmat Roziqin</div>
+          <div class="badges" style="justify-content:center; margin-top:10px">
+            <span class="badge">Terbuka untuk kolaborasi</span>
+            <span class="badge">Freelance</span>
+            <span class="badge">Remote OK</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <h2>Portofolio terpilih</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Landing Page UMKM</h3>
+            <p>Desain responsif untuk promosi produk lokal. Optimasi kecepatan, SEO dasar, dan integrasi WhatsApp.</p>
+            <div class="badges">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">Alpine.js</span>
+            </div>
+            <p><a href="#" target="_blank">Live demo</a> · <a href="#" target="_blank">Kode</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Dashboard Penjualan</h3>
+            <p>Visualisasi data harian dengan grafik interaktif, filter waktu, dan ekspor CSV.</p>
+            <div class="badges">
+              <span class="badge">Vite</span>
+              <span class="badge">Chart.js</span>
+              <span class="badge">Tailwind</span>
+            </div>
+            <p><a href="#" target="_blank">Live demo</a> · <a href="#" target="_blank">Kode</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Blog Pribadi Statis</h3>
+            <p>Blog ringan tanpa backend, dengan komponen markdown dan tema gelap/terang.</p>
+            <div class="badges">
+              <span class="badge">Eleventy</span>
+              <span class="badge">SCSS</span>
+              <span class="badge">Netlify</span>
+            </div>
+            <p><a href="#" target="_blank">Live demo</a> · <a href="#" target="_blank">Kode</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cv">
+        <h2>Curriculum vitae</h2>
+        <div class="list">
+          <div class="list-item">
+            <div class="left">
+              <strong>Pengalaman</strong>
+              <div><b>Front-end Developer</b> — Studio Kreatif Semarang</div>
+              <div>Bangun komponen UI reusable, optimasi performa, dan kolaborasi dengan tim desain.</div>
+              <div class="badges"><span class="badge">React</span><span class="badge">SPA</span><span class="badge">A11y</span></div>
+            </div>
+            <div class="right">2023—Sekarang · Semarang</div>
+          </div>
+
+          <div class="list-item">
+            <div class="left">
+              <strong>Pendidikan</strong>
+              <div><b>S1 Teknik Informatika</b> — Universitas XYZ</div>
+              <div>Fokus: Rekayasa Perangkat Lunak, Jaringan, dan Interaksi Manusia-Komputer.</div>
+            </div>
+            <div class="right">2019—2023</div>
+          </div>
+
+          <div class="list-item">
+            <div class="left">
+              <strong>Sertifikasi</strong>
+              <div><b>Front-end Web Developer</b> — Dicoding</div>
+              <div><b>JavaScript Algorithms & Data Structures</b> — freeCodeCamp</div>
+            </div>
+            <div class="right">2022—2024</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Keahlian</h2>
+        <div class="skills-cloud">
+          <span class="badge">HTML5</span>
+          <span class="badge">CSS3</span>
+          <span class="badge">JavaScript</span>
+          <span class="badge">TypeScript</span>
+          <span class="badge">React</span>
+          <span class="badge">Tailwind CSS</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">REST API</span>
+          <span class="badge">Git & GitHub</span>
+          <span class="badge">SEO Dasar</span>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Kontak</h2>
+        <p>Terbuka untuk proyek freelance atau kerja sama. Ceritakan kebutuhanmu, mari kita wujudkan.</p>
+        <div class="socials">
+          <a href="mailto:rohmatr12@gmail.com">✉️ rohmatr12@gmail.com</a>
+          <a href="https://github.com/username" target="_blank">🐙 GitHub</a>
+          <a href="https://linkedin.com/in/username" target="_blank">🔗 LinkedIn</a>
+          <a href="https://wa.me/6281234567890" target="_blank">💬 WhatsApp</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 PT · Dibuat dengan cinta dan sedikit kopi
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle
+    const btn = document.getElementById('themeBtn');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      btn.textContent = document.body.classList.contains('light') ? '🌗 Tema' : '🌞 Terang';
+    });
+
+    // Simple typing effect
+    const el = document.getElementById('typing');
+    const words = ['Front-end Developer', 'UI Enthusiast', 'Problem Solver'];
+    let i = 0, j = 0, del = false;
+    function type() {
+      const word = words[i];
+      el.textContent = word.slice(0, j);
+      if (!del && j < word.length) j++;
+      else if (del && j > 0) j--;
+      else if (!del && j === word.length) { del = true; setTimeout(type, 1400); return; }
+      else if (del && j === 0) { del = false; i = (i + 1) % words.length; }
+      setTimeout(type, del ? 55 : 90);
+    }
+    type();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
